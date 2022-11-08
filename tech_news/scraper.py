@@ -1,6 +1,18 @@
+import pip._vendor.requests
+import time
+
+
 # Requisito 1
 def fetch(url):
-    pass
+    try:
+        time.sleep(1)
+        response = pip._vendor.requests.get(
+          url, timeout=3, headers={"user-agent": "Fake user-agent"})
+        if response.status_code == 200:
+            return response.text
+
+    except pip._vendor.requests.ReadTimeout:
+        return None
 
 
 # Requisito 2
